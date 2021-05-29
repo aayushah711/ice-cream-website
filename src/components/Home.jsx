@@ -1,8 +1,8 @@
 import Button from "react-bootstrap/Button";
+import { useSelector } from "react-redux";
 
 const styles = {
     homepage: {
-        height: "100vh",
         width: "100%",
     },
     homepageImage: {
@@ -11,6 +11,7 @@ const styles = {
     },
 };
 const Home = () => {
+    const theme = useSelector((state) => state.theme);
     return (
         <div style={styles.homepage}>
             <div
@@ -21,7 +22,7 @@ const Home = () => {
                 <h1 className="display-6 d-none d-md-block">
                     Ice creams as you've never known it.
                 </h1>
-                <Button variant="light" className="mt-3">
+                <Button variant={theme} className="mt-3">
                     Get Started
                 </Button>
             </div>
