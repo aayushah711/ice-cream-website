@@ -7,10 +7,14 @@ import { useHistory } from "react-router-dom";
 import { toggleToast } from "../redux/actions";
 import { useDispatch } from "react-redux";
 
+const styles = {
+    dark: "bg-dark text-light",
+    light: "bg-light text-dark",
+};
+
 const Details = ({ modal, hideModal, showModal }) => {
     const dispatch = useDispatch();
     const theme = useSelector((state) => state.theme);
-    const cart = useSelector((state) => state.cart);
     const history = useHistory();
     const [details, setDetails] = useState({
         name: "",
@@ -28,8 +32,6 @@ const Details = ({ modal, hideModal, showModal }) => {
         );
         history.push("/");
     };
-    const styles =
-        theme === "dark" ? "bg-dark text-light" : "bg-light text-dark";
 
     useEffect(
         () =>
@@ -48,10 +50,10 @@ const Details = ({ modal, hideModal, showModal }) => {
 
     return (
         <Modal show={modal} onHide={hideModal}>
-            <Modal.Header className={styles}>
+            <Modal.Header className={styles[theme]}>
                 <Modal.Title>Contact Details</Modal.Title>
             </Modal.Header>
-            <Modal.Body className={styles}>
+            <Modal.Body className={styles[theme]}>
                 <Form>
                     <Form.Group>
                         <Form.Label>Name</Form.Label>
@@ -85,7 +87,7 @@ const Details = ({ modal, hideModal, showModal }) => {
                     </Form.Group>
                 </Form>
             </Modal.Body>
-            <Modal.Footer className={styles}>
+            <Modal.Footer className={styles[theme]}>
                 <Button variant="danger" onClick={hideModal}>
                     Close
                 </Button>

@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 import Details from "./Details";
 import { useState } from "react";
 
+const styles = {
+    dark: "py-3 mb-3 bg-dark",
+    light: "py-3 mb-3 bg-light",
+};
+
 const Cart = () => {
     const theme = useSelector((state) => state.theme);
     const cart = useSelector((state) => state.cart);
@@ -20,14 +25,7 @@ const Cart = () => {
             </Row>
             {cart.length > 0 ? (
                 cart.map((item) => (
-                    <Card
-                        key={item.id}
-                        className={
-                            theme === "dark"
-                                ? "py-3 mb-3 bg-dark"
-                                : "py-3 mb-3 bg-light"
-                        }
-                    >
+                    <Card key={item.id} className={styles[theme]}>
                         <Row className="pl-3">
                             <Col xs={2}>
                                 <Image

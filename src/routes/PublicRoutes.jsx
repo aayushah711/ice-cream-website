@@ -10,7 +10,7 @@ export default function Routing(props) {
             <Route path="/purchase" exact component={Purchase} />
             <Route path="/cart" exact component={Cart} />
 
-            <Route render={() => <h3>Page not found</h3>} />
+            <Route render={() => <h3 className="mt-4">Page not found</h3>} />
         </Switch>
     );
 }

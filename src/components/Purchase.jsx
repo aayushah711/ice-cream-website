@@ -74,12 +74,14 @@ const Home = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        // Validation
         if (checkValidity() === false) {
-            e.preventDefault();
-            e.stopPropagation();
             setValidated(false);
             return;
         }
+
+        // Changing data structure for toppings
         const toppings = [];
         for (let key in form.step3) {
             if (form.step3[key]) {
@@ -87,6 +89,7 @@ const Home = () => {
             }
         }
 
+        // Adding to cart
         dispatch(
             addToCart({
                 step1: form.step1,
@@ -96,6 +99,7 @@ const Home = () => {
             })
         );
 
+        // Success message toast
         dispatch(
             toggleToast({
                 status: true,
@@ -103,10 +107,12 @@ const Home = () => {
             })
         );
 
+        // Resetting form
         setForm(initState);
     };
 
     const onChange = (e) => {
+        // Different on change function for step 3
         if (e.target.name === "step3") {
             return;
         }

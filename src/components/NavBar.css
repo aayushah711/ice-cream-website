@@ -1,14 +1,12 @@
+/* Copied code for slider  */
+
 .theme-switch-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
     padding-top: 10px;
-
-    /* em {
-        margin-left: 10px;
-        font-size: 1rem;
-    } */
 }
+
 .theme-switch {
     display: inline-block;
     height: 24px;

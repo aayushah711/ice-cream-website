@@ -5,16 +5,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleToast } from "./redux/actions";
 import Toast from "react-bootstrap/Toast";
 
+// Extra space so that navbar does not hide content
 const styles = {
     navbarSpace: {
         height: "55px",
     },
+    dark: "background dark-mode",
+    light: "background",
 };
 
 function App() {
     const theme = useSelector((state) => state.theme);
     const toast = useSelector((state) => state.toast);
     const toastMessage = useSelector((state) => state.toastMessage);
+
     const dispatch = useDispatch();
     const closeToast = () => {
         dispatch(
@@ -25,11 +29,7 @@ function App() {
     };
     return (
         <div className="App">
-            <div
-                className={
-                    theme === "dark" ? "background dark-mode" : "background"
-                }
-            >
+            <div className={styles[theme]}>
                 <NavBarComponent></NavBarComponent>
                 <div style={styles.navbarSpace}>a</div>
                 <PublicRoutes></PublicRoutes>
