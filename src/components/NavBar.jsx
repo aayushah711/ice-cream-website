@@ -4,6 +4,7 @@ import "./NavBar.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { changeTheme } from "../redux/actions";
+import { Link } from "react-router-dom";
 
 const NavBarComponent = () => {
     const [themeSwitch, setThemeSwitch] = useState(false);
@@ -21,7 +22,9 @@ const NavBarComponent = () => {
     );
     return (
         <Navbar bg={theme} variant={theme} fixed="top">
-            <Navbar.Brand href="#home">Ice Cream Shop</Navbar.Brand>
+            <Link to="/">
+                <Navbar.Brand>Ice Cream Shop</Navbar.Brand>
+            </Link>
             <Nav className="ml-auto">
                 <div className="theme-switch-wrapper">
                     <label className="theme-switch">
