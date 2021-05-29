@@ -17,7 +17,7 @@ const NavBarComponent = () => {
             themeSwitch
                 ? dispatch(changeTheme("dark"))
                 : dispatch(changeTheme("light")),
-        [themeSwitch]
+        [themeSwitch, dispatch]
     );
     return (
         <Navbar bg={theme} variant={theme} fixed="top">
