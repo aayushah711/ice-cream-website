@@ -66,18 +66,14 @@ const Home = () => {
         return true;
     };
 
-    useEffect(
-        (checkValidity) => {
-            if (err.err) {
-                checkValidity();
-            }
-        },
-        [form, err]
-    );
+    useEffect(() => {
+        if (err.err) {
+            checkValidity();
+        }
+    }, [form]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(form);
         if (checkValidity() === false) {
             e.preventDefault();
             e.stopPropagation();
@@ -90,7 +86,6 @@ const Home = () => {
                 toppings.push(key);
             }
         }
-        console.log(toppings);
 
         dispatch(
             addToCart({
@@ -107,6 +102,8 @@ const Home = () => {
                 message: "Successfully added Ice cream to cart",
             })
         );
+
+        setForm(initState);
     };
 
     const onChange = (e) => {

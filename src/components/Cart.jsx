@@ -1,10 +1,15 @@
 import { Container, Row, Col, Image, Button, Card } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Details from "./Details";
+import { useState } from "react";
 
 const Cart = () => {
     const theme = useSelector((state) => state.theme);
     const cart = useSelector((state) => state.cart);
+    const [modal, setModal] = useState(false);
+    const hideModal = () => setModal(false);
+    const showModal = () => setModal(true);
     return (
         <Container>
             <Row>
@@ -48,8 +53,9 @@ const Cart = () => {
                                         Toppings:{" "}
                                     </span>
                                     <span>
-                                        {!!item.toppings.length &&
-                                            item.toppings.join(", ")}
+                                        {!!item.toppings.length
+                                            ? item.toppings.join(", ")
+                                            : "--"}
                                     </span>
                                 </p>
                             </Col>
@@ -69,7 +75,10 @@ const Cart = () => {
             <Row>
                 <Col>
                     {!!cart.length ? (
-                        <Button variant={theme === "dark" ? "light" : "dark"}>
+                        <Button
+                            variant={theme === "dark" ? "light" : "dark"}
+                            onClick={showModal}
+                        >
                             Pay ₹{cart.length * 100} /-
                         </Button>
                     ) : (
@@ -83,6 +92,11 @@ const Cart = () => {
                     )}
                 </Col>
             </Row>
+            <Details
+                modal={modal}
+                hideModal={hideModal}
+                showModal={showModal}
+            ></Details>
         </Container>
     );
 };
